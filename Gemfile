@@ -9,6 +9,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bcrypt', '~> 3.1.7'
+gem 'github_api'
 
 group :development, :test do
   gem 'rspec-rails'
