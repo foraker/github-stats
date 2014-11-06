@@ -1,0 +1,20 @@
+<h1>Pull Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Repository</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pull_requests.each do |pull_request| %>
+      <tr>
+        <td><%= pull_request.title %></td>
+        <td><%= pull_request.repository.name %></td>
+        <td><%= pull_request.github_user.login %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
