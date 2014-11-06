@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bcrypt', '~> 3.1.7'
 gem 'github_api'
+gem 'bootstrap-sass', '~> 3.3.0'
 
 group :development, :test do
   gem 'rspec-rails'
