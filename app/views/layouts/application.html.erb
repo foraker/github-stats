@@ -7,8 +7,42 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if current_user %>
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Foraker</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <%= link_to 'Pull Requests', pull_requests_path %>
+            </li>
+            <li>
+              <%= link_to 'Comments', comments_path %>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <%= link_to 'Log Out', signout_path, method: :delete %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  <% end %>
 
-<%= yield %>
-
+  <div class="container" role="main">
+    <%= yield %>
+  </div>
 </body>
 </html>
