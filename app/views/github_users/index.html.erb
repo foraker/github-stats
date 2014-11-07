@@ -1,6 +1,6 @@
 <h1>Users</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Username</th>
@@ -19,7 +19,10 @@
           <%= link_to github_user.pull_requests.size,
             pull_requests_path(search: { user_id: github_user.id }) %>
         </td>
-        <td><%= github_user.comments.size %></td>
+        <td>
+          <%= link_to github_user.comments.size,
+            comments_path(search: { user_id: github_user.id }) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

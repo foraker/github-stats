@@ -7,4 +7,6 @@ RSpec.describe Comment, type: :model do
 
   it { should belong_to :github_user }
   it { should belong_to :pull_request }
+
+  it { should have_one(:repository).through(:pull_request) }
 end

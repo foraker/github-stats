@@ -1,6 +1,6 @@
 <h1>Repositories</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -18,7 +18,10 @@
           <%= link_to repository.pull_requests.count,
             pull_requests_path(search: { repository_id: repository.id }) %>
         </td>
-        <td><%= repository.comments.count %></td>
+        <td>
+          <%= link_to repository.comments.count,
+            comments_path(search: { repository_id: repository.id }) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

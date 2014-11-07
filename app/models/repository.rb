@@ -7,4 +7,8 @@ class Repository < ActiveRecord::Base
   def self.alphabetized
     order(:name)
   end
+
+  def self.with_id(id)
+    where(id: id)
+  end
 end
