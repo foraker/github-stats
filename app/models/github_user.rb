@@ -7,4 +7,8 @@ class GithubUser < ActiveRecord::Base
   def self.alphabetized
     order(:login)
   end
+
+  def name
+    login
+  end
 end

@@ -15,8 +15,11 @@
           <%= link_to github_user.login,
             "https://www.github.com/#{github_user.login}", target: '_blank' %>
         </td>
-        <td><%= github_user.pull_requests.count %></td>
-        <td><%= github_user.comments.count %></td>
+        <td>
+          <%= link_to github_user.pull_requests.size,
+            pull_requests_path(search: { user_id: github_user.id }) %>
+        </td>
+        <td><%= github_user.comments.size %></td>
       </tr>
     <% end %>
   </tbody>

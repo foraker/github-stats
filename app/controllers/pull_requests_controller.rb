@@ -1,5 +1,12 @@
 class PullRequestsController < AdminController
   def index
-    @pull_requests = PullRequest.newest_first
+    @search        = Searches::PullRequest.new(search_params[:search])
+    @pull_requests = @search.results.paginate(page: params[:page])
+  end
+
+  private
+
+  def search_params
+    params.permit(search: [:user_id, :repository_id])
   end
 end

@@ -1,6 +1,16 @@
 <h1>Pull Requests</h1>
 
-<table>
+<h2>Results: <%= @pull_requests.total_entries %></h2>
+
+<%= simple_form_for @search, url: pull_requests_path, method: :get, as: :search do |f| %>
+  <%= f.input :user_id, collection: GithubUser.alphabetized, required: false %>
+  <%= f.input :repository_id, collection: Repository.alphabetized, required: false %>
+  <%= f.submit 'Filter', class: 'btn btn-primary' %>
+<% end %>
+
+<%= will_paginate @pull_requests %>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
@@ -18,3 +28,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @pull_requests %>

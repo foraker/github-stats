@@ -11,6 +11,8 @@ gem 'turbolinks'
 gem 'bcrypt', '~> 3.1.7'
 gem 'github_api'
 gem 'bootstrap-sass', '~> 3.3.0'
+gem 'simple_form'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -19,6 +21,8 @@ end
 
 group :development do
   gem 'spring'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
