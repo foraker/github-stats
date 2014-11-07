@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106061500) do
+ActiveRecord::Schema.define(version: 20141107042429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "admins", force: true do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "comments", force: true do |t|
     t.integer  "github_id"
@@ -34,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141106061500) do
     t.string   "pull_request_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pull_request_id"
   end
 
   create_table "github_users", force: true do |t|

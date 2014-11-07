@@ -87,7 +87,8 @@ module GithubWrapper
             body:              remote_comment.body,
             remote_created_at: remote_comment.created_at,
             remote_updated_at: remote_comment.updated_at,
-            pull_request_url:  remote_comment.pull_request_url
+            pull_request_url:  remote_comment.pull_request_url,
+            pull_request_id:   PullRequest.find_by_url(remote_comment.pull_request_url).try(:id)
           ).find_or_create_by(github_id: remote_comment.id)
         end
       end
