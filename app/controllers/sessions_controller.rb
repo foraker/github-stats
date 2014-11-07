@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_filter :ensure_no_user, only: [:new, :create]
+
   def new; end
 
   def create
@@ -14,5 +16,11 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to root_url, notice: 'Signed out.'
+  end
+
+  private
+
+  def ensure_no_user
+    redirect_to pull_requests_url if current_user.present?
   end
 end
