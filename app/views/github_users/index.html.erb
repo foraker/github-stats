@@ -1,0 +1,23 @@
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Pull Requests</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @github_users.each do |github_user| %>
+      <tr>
+        <td>
+          <%= link_to github_user.login,
+            "https://www.github.com/#{github_user.login}", target: '_blank' %>
+        </td>
+        <td><%= github_user.pull_requests.count %></td>
+        <td><%= github_user.comments.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

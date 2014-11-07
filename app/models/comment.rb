@@ -5,4 +5,5 @@ class Comment < ActiveRecord::Base
   validates :github_id, uniqueness: true
 
   belongs_to :github_user
+  belongs_to :pull_request
 end

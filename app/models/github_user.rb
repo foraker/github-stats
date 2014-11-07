@@ -3,4 +3,8 @@ class GithubUser < ActiveRecord::Base
 
   has_many :comments
   has_many :pull_requests
+
+  def self.alphabetized
+    order(:login)
+  end
 end
