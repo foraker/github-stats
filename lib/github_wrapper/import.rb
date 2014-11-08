@@ -5,6 +5,10 @@ module GithubWrapper
     end
 
     def initialize(config = Rails.application.secrets)
+      unless config.github_username.present? && config.github_password.present?
+        raise 'Please set ENV["GITHUB_USERNAME"] and ENV["GITHUB_PASSWORD"]'
+      end
+
       self.github = Github.new(
         login: config.github_username,
         password: config.github_password
