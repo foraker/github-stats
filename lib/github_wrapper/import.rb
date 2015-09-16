@@ -11,7 +11,7 @@ module GithubWrapper
 
       self.github = Github.new(
         login: config.github_username,
-        password: config.github_password
+        password: 'cac6f25cfc2deb057e8c11abec65b4babac68189'#config.github_password
       )
     end
 

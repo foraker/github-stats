@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141107042429) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "github_id"
     t.integer  "github_user_id"
     t.string   "url"
@@ -30,14 +30,19 @@ ActiveRecord::Schema.define(version: 20141107042429) do
     t.integer  "pull_request_id"
   end
 
-  create_table "github_users", force: true do |t|
+  add_index "comments", ["github_id"], name: "index_comments_on_github_id", using: :btree
+  add_index "comments", ["github_user_id"], name: "index_comments_on_github_user_id", using: :btree
+
+  create_table "github_users", force: :cascade do |t|
     t.string   "login"
     t.integer  "github_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "pull_requests", force: true do |t|
+  add_index "github_users", ["github_id"], name: "index_github_users_on_github_id", using: :btree
+
+  create_table "pull_requests", force: :cascade do |t|
     t.integer  "repository_id"
     t.integer  "github_user_id"
     t.string   "url"
@@ -54,7 +59,11 @@ ActiveRecord::Schema.define(version: 20141107042429) do
     t.datetime "updated_at"
   end
 
-  create_table "repositories", force: true do |t|
+  add_index "pull_requests", ["github_id"], name: "index_pull_requests_on_github_id", using: :btree
+  add_index "pull_requests", ["github_user_id"], name: "index_pull_requests_on_github_user_id", using: :btree
+  add_index "pull_requests", ["repository_id"], name: "index_pull_requests_on_repository_id", using: :btree
+
+  create_table "repositories", force: :cascade do |t|
     t.integer  "github_id"
     t.string   "name"
     t.boolean  "private"
@@ -67,7 +76,9 @@ ActiveRecord::Schema.define(version: 20141107042429) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  add_index "repositories", ["github_id"], name: "index_repositories_on_github_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
     t.datetime "created_at"
