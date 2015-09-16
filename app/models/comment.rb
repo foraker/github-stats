@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   validates :github_user, :github_id, presence: true
   validates :github_id, uniqueness: true
 
-  belongs_to :github_user
+  belongs_to :github_user, counter_cache: true
   belongs_to :pull_request
 
   has_one :repository, through: :pull_request

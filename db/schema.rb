@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107042429) do
+ActiveRecord::Schema.define(version: 20150916141233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20141107042429) do
     t.integer  "github_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "comments_count"
+    t.integer  "pull_requests_count"
   end
 
   add_index "github_users", ["github_id"], name: "index_github_users_on_github_id", using: :btree

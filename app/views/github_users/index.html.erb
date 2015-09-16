@@ -16,11 +16,11 @@
             "https://www.github.com/#{github_user.login}", target: '_blank' %>
         </td>
         <td>
-          <%= link_to github_user.pull_requests.size,
+          <%= link_to github_user.pull_requests_count,
             pull_requests_path(search: { user_id: github_user.id }) %>
         </td>
         <td>
-          <%= link_to github_user.comments.size,
+          <%= link_to github_user.comments_count,
             comments_path(search: { user_id: github_user.id }) %>
         </td>
       </tr>
