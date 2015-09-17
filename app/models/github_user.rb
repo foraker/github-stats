@@ -5,7 +5,15 @@ class GithubUser < ActiveRecord::Base
   has_many :pull_requests
 
   def self.alphabetized
-    order(:login)
+    order("lower(#{table_name}.login)")
+  end
+
+  def self.ordered_by_comment_count
+    order("#{table_name}.comments_count desc")
+  end
+
+  def self.ordered_by_pull_request_count
+    order("#{table_name}.pull_requests_count desc")
   end
 
   def name

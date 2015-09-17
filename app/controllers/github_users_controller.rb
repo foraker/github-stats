@@ -1,5 +1,5 @@
 class GithubUsersController < AdminController
   def index
-    @github_users = GithubUser.alphabetized.includes(:pull_requests, :comments)
+    @github_users = Searches::GithubUser.new(params).results
   end
 end
