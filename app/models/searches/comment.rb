@@ -1,10 +1,12 @@
 module Searches
   class Comment < Base
-    delegate :user_id, :repository_id, to: :query
+    include RemoteCreatedAtFiltering
+    delegate :user_id, :repository_id, :created_after, :created_before, to: :query
 
     def results
-      scope_to_user if user?
-      scope_to_repository if repository?
+      scope_to_user           if user?
+      scope_to_repository     if repository?
+      scope_to_created_timestamps
       scope
     end
 

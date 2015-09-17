@@ -7,6 +7,6 @@ class CommentsController < AdminController
   private
 
   def search_params
-    params.permit(search: [:user_id, :repository_id])
+    params.permit(search: [:user_id, :repository_id, :created_after, :created_before])
   end
 end

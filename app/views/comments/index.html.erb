@@ -5,6 +5,8 @@
 <%= simple_form_for @search, url: comments_path, method: :get, as: :search do |f| %>
   <%= f.input :user_id, collection: GithubUser.alphabetized, required: false %>
   <%= f.input :repository_id, collection: Repository.alphabetized, required: false %>
+  <%= f.input :created_after, required: false %>
+  <%= f.input :created_before, required: false %>
   <%= f.submit 'Filter', class: 'btn btn-primary' %>
 <% end %>
 
