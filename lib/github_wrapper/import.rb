@@ -13,6 +13,8 @@ module GithubWrapper
         login: config.github_username,
         password: 'cac6f25cfc2deb057e8c11abec65b4babac68189'#config.github_password
       )
+
+      self.organization = config.github_organization
     end
 
     def import
@@ -23,10 +25,10 @@ module GithubWrapper
 
     private
 
-    attr_accessor :github, :repos
+    attr_accessor :github, :repos, :organization
 
     def import_repositories
-      remote_repos = github.repos.list(org: "Foraker", type: :all, auto_pagination: true)
+      remote_repos = github.repos.list(org: organization, type: :all, auto_pagination: true)
       remote_repos.each do |remote_repo|
         Repository.create_with(
           name:              remote_repo.name,
@@ -44,7 +46,7 @@ module GithubWrapper
       Repository.all.each do |repo|
         %w{ open closed }.each do |state|
           github.pull_requests.list(
-            user: "Foraker",
+            user: organization,
             repo: repo.name,
             state: state,
             auto_pagination: true
@@ -74,7 +76,7 @@ module GithubWrapper
     def import_comments
       Repository.all.each do |repo|
         github.pull_requests.comments.list(
-          user: "Foraker",
+          user: organization,
           repo: repo["name"],
           auto_pagination: true
         ).each do |remote_comment|
